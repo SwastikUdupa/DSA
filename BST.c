@@ -27,19 +27,39 @@ struct node* insertNode(struct node *root,int key)
     }
 
 }
-void deleteNode(struct *node root,int key)
+struct node* minNode(struct node *root)
+{
+    while(root->left!=NULL)
+        root=root->left;
+    return root;
+}
+struct node *deleteNode(struct node* root,int key)
 {
     if(root==NULL)
         return root;
     if(root->key>key)
-        root->left=deleteNode(root->left);
+        root->left=deleteNode(root->left,key);
     else if(root->key<key)
-        root->right=deleteNode(root->right);
+        root->right=deleteNode(root->right,key);
     else
     {
-
+        if(root->right==NULL)
+        {
+            struct node *temp=root->left;
+            free(root);
+            return temp;
+        }
+        else if(root->left==NULL)
+        {
+            struct node *temp=root->right;
+            free(root);
+            return temp;
+        }
+        struct node *temp=minNode(root->right);
+        root->key=temp->key;
+        root->right=deleteNode(root->right,key);
     }
-
+    return root;
 }
 void inorder(struct node *root)
 {
