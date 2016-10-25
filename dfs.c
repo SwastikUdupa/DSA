@@ -1,5 +1,15 @@
 #include<stdio.h>
 int a[100],top=-1,isVisited[100];
+int notInStack(int x)
+{
+int i;
+	for(i=0;i<=top;i++)
+	{
+		if(a[i]==x)
+			return 0;
+	}
+return 1;
+}
 void push(int ele)
 {
     a[++top]=ele;
@@ -45,7 +55,7 @@ void dfs(int num)
             isVisited[u]=1;
             for(i=0;i<num;i++)
             {
-                if(adj[u][i]&&!isVisited[i])
+                if(adj[u][i]&&!isVisited[i]&&(notInStack(i)||top==-1))
                     {
                         push(i);
                     }
@@ -54,10 +64,11 @@ void dfs(int num)
     }
 
 }
-main()
+int main()
 {
     int num,vertex;
     printf("Please enter the number of vertices: ");
     scanf("%d",&num);
     dfs(num);
+    return 1;
 }
