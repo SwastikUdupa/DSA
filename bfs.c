@@ -1,6 +1,16 @@
 #include<stdio.h>
 int top=-1,front=-1,visited[100];
 int a[100];
+int notInStack(int x)
+{
+int i;
+	for(i=0;i<=top;i++)
+	{
+		if(a[i]==x)
+			return 0;
+	}
+return 1;
+}
 int dequeue()
 {
     printf("%d\n",a[front+1]);
@@ -47,7 +57,7 @@ void bfs()
             visited[u]=1;
             for(i=0;i<num;i++)
             {
-                if(adj[u][i]==1&&visited[i]==0)
+                if(adj[u][i]&&!visited[i]&&(notInStack(i)||front==top))
                 {
                     enqueue(i);
                 }
@@ -56,7 +66,8 @@ void bfs()
 
     }
 }
-main()
+int main()
 {
     bfs();
+    return 1;
 }
