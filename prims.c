@@ -1,4 +1,5 @@
 #include<stdio.h>
+int minCost=0;
 main()
 {
     printf("Please enter the number of vertices: ");
@@ -43,8 +44,10 @@ main()
         {
             visited[v]=1;
             printf("The edge is %d to %d\n",u,v);
+            minCost+=a[u][v];
             a[u][v]=a[v][u]=999;
         }
         ne++;
     }
+    printf("The minimum cost is:%d",minCost);
 }
