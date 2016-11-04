@@ -1,22 +1,11 @@
 #include<stdio.h>
 int a[100],top=-1,isVisited[100];
-int notInStack(int x)
-{
-int i;
-	for(i=0;i<=top;i++)
-	{
-		if(a[i]==x)
-			return 0;
-	}
-return 1;
-}
 void push(int ele)
 {
     a[++top]=ele;
 }
 int pop()
 {
-    printf("%d\n",a[top]);
     return a[top--];
 }
 void dfs(int num)
@@ -52,14 +41,17 @@ void dfs(int num)
         int u=pop();
         if(!isVisited[u])
         {
+            printf("%d\n",u);
             isVisited[u]=1;
-            for(i=0;i<num;i++)
-            {
-                if(adj[u][i]&&!isVisited[i]&&(notInStack(i)||top==-1))
-                    {
-                        push(i);
-                    }
-            }
+        }
+        for(i=0;i<num;i++)
+        {
+            if(adj[u][i]&&!isVisited[i])
+                {
+                    push(u);
+                    push(i);
+                    break;
+                }
         }
     }
 
