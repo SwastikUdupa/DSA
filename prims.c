@@ -6,7 +6,9 @@ main()
     int num;
     scanf("%d",&num);
     int i,j,k,u,v;
-    int a[10][10],visited[100];
+    int a[10][10],visited[100],int arr[10];
+    for(i=0;i<num;i++)
+        arr[i]=i;
     printf("Please enter the adjacency matrix: ");
     for(i=0;i<num;i++)
     {

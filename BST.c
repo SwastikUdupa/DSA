@@ -13,7 +13,7 @@ struct node* newNode(int key)
     temp->right=NULL;
     temp->key=key;
     return temp;
-};
+}
 struct node* insertNode(struct node *root,int key)
 {
     if(root==NULL)
